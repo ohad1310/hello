@@ -17,11 +17,9 @@ agent any
             }
         }
         stage('information') {
-            steps {
-				script {
-					IMAGE_ID = 'sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"'
-				}
-            }
+            IMAGE_ID=$(
+				sh 'sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"'
+			)
         }
 		stage ('run') {
 			steps {
