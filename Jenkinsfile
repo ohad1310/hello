@@ -16,15 +16,16 @@ agent any
 				sh 'sudo docker build -t ohad1310/nginx:1.2 .'
             }
         }
-		def IMAGE_ID(command){
-			sh '''
-				sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"
-			'''
-		}
 		stage ('run new container') {
 			steps {
 				sh 'sudo docker run -d -p 80:80 --name nginx env.IMAGE_ID'
 			}
 		}
     }
+}
+
+def IMAGE_ID(command){
+	sh '''
+		sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"
+	'''
 }
