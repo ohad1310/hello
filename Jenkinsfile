@@ -14,7 +14,7 @@ agent any
         stage('build') {
             steps {
 				sh 'sudo docker build -t ohad1310/nginx:1.1 .'
-				sh 'IMAGE_ID=$(sudo docker images --filter=reference=ohad1310/nginx --format "{{.ID}}"'
+				IMAGE_ID=$(sh 'sudo docker images --filter=reference=ohad1310/nginx --format "{{.ID}}')"
             }
         }
         stage('run') {
