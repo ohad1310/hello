@@ -1,13 +1,13 @@
 pipeline {
 agent any
     stages {
-		stage (stop){
-			steps{
+		stage ('stop'){
+			steps {
 				sh 'docker stop ohad1310/nginx'
 			}
 		}
-		stage (remove){
-			step{
+		stage ('remove'){
+			steps {
 				sh 'docker rm ohad1310/nginx'
 			}
 		}
