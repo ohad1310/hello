@@ -14,7 +14,7 @@ agent any
         stage('build') {
             steps {
 				script {
-                    def customImage = docker.build("ohad1310/nginx:1.1:${env.BUILD_ID}")
+                    def customImage = docker.build("ohad1310/nginx:${env.BUILD_ID}")
                     customImage.push()
 				}
             }
