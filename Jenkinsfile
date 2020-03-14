@@ -16,13 +16,17 @@ agent any
 				sh 'sudo docker build -t ohad1310/nginx:1.2 .'
             }
         }
-        stage('run') {
+        stage('information') {
             steps {
 				script {
 					IMAGE_ID = 'sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"'
-					'sudo docker run -d -p 80:80 --name nginx $IMAGE_ID'
 				}
             }
         }
+		stage ('run') {
+			steps {
+				sh 'sudo docker run -d -p 80:80 --name nginx $IMAGE_ID'
+			}
+		}
     }
 }
