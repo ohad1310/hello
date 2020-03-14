@@ -18,7 +18,7 @@ agent any
         }
         stage('run') {
             steps {
-				IMAGE_ID=$(sudo docker images --filter=reference=ohad1310/nginx --format "{{.ID}}")
+				IMAGE_ID=$(sh 'sudo docker images --filter=reference=ohad1310/nginx --format "{{.ID}}"')
                 sh 'sudo docker run -d -p 80:80 --name nginx $IMAGE_ID'
             }
         }
