@@ -18,14 +18,11 @@ agent any
         }
 		stage ('run new container') {
 			steps {
-				sh 'sudo docker run -d -p 80:80 --name nginx env.IMAGE_ID'
+				script{
+					IMAGE_ID=$(sh 'sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"')
+					sh 'sudo docker run -d -p 80:80 --name nginx $IMAGE_ID'
+				}
 			}
 		}
     }
-}
-
-def IMAGE_ID(command){
-	sh '''
-		sudo docker images --filter=reference=ohad1310/nginx:1.2 --format "{{.ID}}"
-	'''
 }
